@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160218154655) do
+ActiveRecord::Schema.define(version: 20160218165813) do
+
+  create_table "decisions", force: :cascade do |t|
+    t.integer  "dec_type"
+    t.integer  "app_choice"
+    t.integer  "user_choice"
+    t.text     "description"
+    t.string   "option_a"
+    t.string   "option_b"
+    t.integer  "a_count"
+    t.integer  "b_count"
+    t.integer  "vote_choice"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

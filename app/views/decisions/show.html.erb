@@ -1,0 +1,9 @@
+<h1>Decisions#show</h1>
+<p>Find me in app/views/decisions/show.html.erb</p>
+
+<%= @decision.specified_result %>
+
+<%= form_for @decision, url: decision_path(@decision), method: :put do |d| %>
+	<%= d.submit("I took your advice") %>
+	<%= d.submit("Actually, I'm going with the other one") %>
+<% end %>
