@@ -1,9 +1,3 @@
 <h1>Decisions#index</h1>
 <p>Find me in app/views/decisions/index.html.erb</p>
 
-<%= form_for @decision do |d| %>
-	<%= d.label :dec_type %>
-	<%= d.select(:dec_type, Decision::TYPEDESC, {include_blank: true}) %>
-	<%= d.submit %>
-<% end %>
-

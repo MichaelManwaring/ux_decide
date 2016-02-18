@@ -1,6 +1,5 @@
 class DecisionsController < ApplicationController
   def index
-    @decision=Decision.new
   end
 
   def new
@@ -8,17 +7,21 @@ class DecisionsController < ApplicationController
   end
 
   def create
-    @decision=Decision.new(decision_params)
-    @decision.dec_type = Decision.type_index(params[:decision][:dec_type])
+    @decision=Decision.new(dec_type: Decision.type_index(params[:decision][:dec_type]))
+    # @decision.dec_type = Decision.type_index(params[:decision][:dec_type])
     @decision.app_choice = rand(2)
     if user_signed_in?
       @decision.user_id = current_user.id
     end
     if @decision.save
-      redirect_to decision_path(@decision)
+      if @decision.dec_type == 6
+        redirect_to edit_decision_path(@decision)
+      else
+        redirect_to decision_path(@decision)
+      end
     else
       flash[:notice] = "Invalid Decision"
-      redirect_to new_decision_path
+      redirect_to root_path
     end
   end
 
@@ -27,6 +30,7 @@ class DecisionsController < ApplicationController
   end
 
   def edit
+    @decision=Decision.find(params[:id])
   end
 
   def update
@@ -41,6 +45,9 @@ class DecisionsController < ApplicationController
       else
         flash[:notice] = "bad commit"
       end
+    elsif params[:commit] == "Create Custom Decision"
+      @decision.update(custom_decision_params)
+
     end
     if @decision.save
       redirect_to decision_path(@decision)
@@ -55,7 +62,7 @@ class DecisionsController < ApplicationController
 
   private
 
-  def decision_params
-    params.require(:decision).permit(:option_a, :option_b, :choice_description)   
+  def custom_decision_params
+    params.require(:decision).permit(:option_a, :option_b, :description)   
   end
 end

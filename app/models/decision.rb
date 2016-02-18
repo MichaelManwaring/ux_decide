@@ -9,9 +9,9 @@ class Decision < ActiveRecord::Base
 	end
 	def specified_result
 		if self.dec_type == 6
-			if self.a_count > b_count
+			if self.app_choice = 0
 				return self.option_a
-			elsif self.a_count < b_count
+			elsif self.app_choice = 1
 				return self.option_b
 			else
 				return "No Decision"
@@ -21,6 +21,8 @@ class Decision < ActiveRecord::Base
 				return self.decision_type.split()[0]
 			elsif self.app_choice = 1
 				return self.decision_type.split()[2]
+			else
+				return "No Decision"
 			end
 		end	
 	end
