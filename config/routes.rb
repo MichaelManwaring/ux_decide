@@ -1,30 +1,13 @@
 Rails.application.routes.draw do
-  get 'decisions/index'
-
-  get 'decisions/new'
-
-  get 'decisions/create'
-
-  get 'decisions/show'
-
-  get 'decisions/edit'
-
-  get 'decisions/update'
-
-  get 'decisions/destroy'
-
   devise_for :users
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
   root 'decisions#index'
 
-  devise_scope :user do
-   get "signup", to: "devise/registrations#new"
-   get "login", to: "devise/sessions#new"
-   get "logout", to: "devise/sessions#destroy"
-  end
+  # devise_scope :user do
+  #  get "signup", to: "devise/registrations#new"
+  #  get "login", to: "devise/sessions#new"
+  #  get "logout", to: "devise/sessions#destroy"
+  # end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -33,7 +16,7 @@ Rails.application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+  resources :decisions
 
   # Example resource route with options:
   #   resources :products do
