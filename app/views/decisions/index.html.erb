@@ -1,3 +1,6 @@
 <h1>Decisions#index</h1>
 <p>Find me in app/views/decisions/index.html.erb</p>
 
+<% @decisions.each do |d| %>
+	<%=link_to d.description, decision_path(d) %> 
+<% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160218165813) do
+ActiveRecord::Schema.define(version: 20160219193057) do
 
   create_table "decisions", force: :cascade do |t|
     t.integer  "dec_type"
@@ -26,6 +26,23 @@ ActiveRecord::Schema.define(version: 20160218165813) do
     t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.integer  "this"
+    t.integer  "that"
+    t.integer  "cheap"
+    t.integer  "expensive"
+    t.integer  "healthy"
+    t.integer  "indulge"
+    t.integer  "easy"
+    t.integer  "hard"
+    t.integer  "safe"
+    t.integer  "risky"
+    t.integer  "adventure"
+    t.integer  "relax"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -45,5 +62,13 @@ ActiveRecord::Schema.define(version: 20160218165813) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "votes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "decision_id"
+    t.integer  "user_vote"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
 end

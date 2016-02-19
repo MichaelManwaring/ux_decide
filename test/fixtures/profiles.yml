@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  this: 1
+  that: 1
+  cheap: 1
+  expensive: 1
+  healthy: 1
+  indulge: 1
+  easy: 1
+  hard: 1
+  safe: 1
+  risky: 1
+  adventure: 1
+  relax: 1
+
+two:
+  this: 1
+  that: 1
+  cheap: 1
+  expensive: 1
+  healthy: 1
+  indulge: 1
+  easy: 1
+  hard: 1
+  safe: 1
+  risky: 1
+  adventure: 1
+  relax: 1
