@@ -12,11 +12,15 @@
 <%= content_tag :h2, "We think you should do:" %>
 <%= @decision.app_result %>
 
-<%= content_tag :h2, "You have chosen:" %>
-<%= @decision.user_result %>
 
 
-<%= form_for @decision, url: decision_path(@decision), method: :put do |d| %>
-	<%= d.submit("I took your advice") %>
-	<%= d.submit("Actually, I'm going with the other one") %>
+<% if @decision.user_id == current_user.id %>
+	<%= form_for @decision, url: decision_path(@decision), method: :put do |d| %>
+		<%= d.submit("I took your advice") %>
+		<%= d.submit("Actually, I'm going with the other one") %>
+	<% end %>
+	<%= content_tag :h2, "You have chosen:" %>
+<% else %>
+	<%= content_tag :h2, "The creator of this decision chose:" %>
 <% end %>
+<%= @decision.user_result %>

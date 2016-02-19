@@ -1,6 +1,6 @@
 class Decision < ActiveRecord::Base
 	belongs_to :user
-	TYPEDESC = ["Expensive vs. Cheap", "Healthy vs. Treat", "Hard vs. Easy", "Light vs. Dark", "Left vs. Right", "This vs. That", "Custom"]
+	TYPEDESC = ["This or That", "Cheap or Expensive", "Healthy or Indulge", "Easy or Hard", "Safe or Risky", "Adventure or Relax", "Custom"]
 	def decision_type
 		TYPEDESC[self.dec_type]
 	end
@@ -43,6 +43,20 @@ class Decision < ActiveRecord::Base
 			else
 				return "User has not answered"
 			end
+		end	
+	end
+	def return_a
+		if self.dec_type == 6
+			return self.option_a
+		else
+			return self.decision_type.split()[0]
+		end	
+	end	
+	def return_b
+		if self.dec_type == 6
+			return self.option_b
+		else
+			return self.decision_type.split()[2]
 		end	
 	end
 	def voter_result

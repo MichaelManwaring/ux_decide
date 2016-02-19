@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  get 'profile/new'
+
+  get 'profile/create'
+
+  get 'profile/update'
+
+  get 'profile/show'
+
+  get 'votes/create'
+
+  get 'votes/update'
+
+  get 'votes/destroy'
+
   get 'users/show'
 
   devise_for :users, controllers: { sessions: "users/sessions" }
