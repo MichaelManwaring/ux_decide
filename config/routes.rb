@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
+  get 'users/show'
 
-  root 'decisions#index'
+  devise_for :users, controllers: { sessions: "users/sessions" }
+
+  root 'decisions#new'
 
   # devise_scope :user do
   #  get "signup", to: "devise/registrations#new"
@@ -16,7 +18,7 @@ Rails.application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-  resources :decisions
+  resources :decisions, :users
 
   # Example resource route with options:
   #   resources :products do
