@@ -47,7 +47,7 @@ class DecisionsController < ApplicationController
       end
     elsif params[:commit] == "Create Custom Decision"
       @decision.update(custom_decision_params)
-
+      @decision.update(a_count: 0, b_count: 0)
     end
     if @decision.save
       redirect_to decision_path(@decision)
