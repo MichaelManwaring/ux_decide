@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type_id: 1
+  arbiter_id: 1
+  a_score: 1
+  b_score: 1
+
+two:
+  type_id: 1
+  arbiter_id: 1
+  a_score: 1
+  b_score: 1
