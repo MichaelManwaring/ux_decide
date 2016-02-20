@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ProfileControllerTest < ActionController::TestCase
+class ArbitersControllerTest < ActionController::TestCase
   test "should get new" do
     get :new
     assert_response :success
@@ -11,13 +11,13 @@ class ProfileControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get update" do
-    get :update
+  test "should get edit" do
+    get :edit
     assert_response :success
   end
 
-  test "should get show" do
-    get :show
+  test "should get update" do
+    get :update
     assert_response :success
   end
 

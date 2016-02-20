@@ -11,38 +11,66 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160219193057) do
+ActiveRecord::Schema.define(version: 20160220224547) do
+
+  create_table "arbiters", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "decisions", force: :cascade do |t|
-    t.integer  "dec_type"
     t.integer  "app_choice"
     t.integer  "user_choice"
     t.text     "description"
-    t.string   "option_a"
-    t.string   "option_b"
-    t.integer  "a_count"
-    t.integer  "b_count"
-    t.integer  "vote_choice"
-    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "arbiter_id"
+    t.integer  "type_id"
+    t.boolean  "custom"
+  end
+
+  create_table "firstoptions", force: :cascade do |t|
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "decision_id"
+  end
+
+  create_table "possibility_as", force: :cascade do |t|
+    t.integer  "decision_id"
+    t.integer  "option_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  create_table "profiles", force: :cascade do |t|
-    t.integer  "this"
-    t.integer  "that"
-    t.integer  "cheap"
-    t.integer  "expensive"
-    t.integer  "healthy"
-    t.integer  "indulge"
-    t.integer  "easy"
-    t.integer  "hard"
-    t.integer  "safe"
-    t.integer  "risky"
-    t.integer  "adventure"
-    t.integer  "relax"
+  create_table "possibility_bs", force: :cascade do |t|
+    t.integer  "decision_id"
+    t.integer  "option_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "preferences", force: :cascade do |t|
+    t.integer  "type_id"
+    t.integer  "arbiter_id"
+    t.integer  "a_score"
+    t.integer  "b_score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "secondoptions", force: :cascade do |t|
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "decision_id"
+  end
+
+  create_table "types", force: :cascade do |t|
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -64,11 +92,11 @@ ActiveRecord::Schema.define(version: 20160219193057) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
   create_table "votes", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "decision_id"
-    t.integer  "user_vote"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "arbiter_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "firstoption_id"
+    t.integer  "secondoption_id"
   end
 
 end

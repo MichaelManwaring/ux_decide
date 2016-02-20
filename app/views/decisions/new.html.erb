@@ -2,7 +2,17 @@
 <p>Find me in app/views/decisions/new.html.erb</p>
 
 <%= form_for @decision do |d| %>
-	<%= d.label :dec_type %>
-	<%= d.select(:dec_type, Decision::TYPEDESC, {include_blank: true}) %>
+	<%= d.label :type_id %>
+	<%= d.select(:type_id, Type.all.collect {|t| [ t.description, t.id ] }) %>
+	<%= d.label :description %>
+	<%= d.text_area :description %>
+	<%= d.fields_for @firstoption do |a| %>
+		<%= a.label :description %>
+		<%= a.text_field :description %>
+	<% end %>
+	<%= d.fields_for @secondoption do |b| %>
+		<%= b.label :description %>
+		<%= b.text_field :description %>
+	<% end %>
 	<%= d.submit %>
 <% end %>

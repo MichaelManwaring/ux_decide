@@ -1,12 +1,11 @@
 <h1>Decisions#edit</h1>
 <p>Find me in app/views/decisions/edit.html.erb</p>
 
-<%= form_for @decision do |d| %>
-	<%= d.label :description %>
-	<%= d.text_area :description %>
-	<%= d.label :option_a %>
-	<%= d.text_field :option_a %>
-	<%= d.label :option_b %>
-	<%= d.text_field :option_b %>
-	<%= d.submit("Create Custom Decision") %>
+<%= content_tag :h2, "We think you should do:" %>
+<%= @decision.app_choice %>
+<%= form_for @decision, url: decision_path(@decision), method: :put do |d| %>
+	<%= d.submit("I took your advice") %>
+	<%= d.submit("Actually, I'm going with the other one") %>
 <% end %>
+<%= content_tag :h2, "You have chosen:" %>
+<%= @decision.user_choice %>

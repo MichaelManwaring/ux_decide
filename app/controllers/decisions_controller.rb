@@ -1,32 +1,44 @@
 class DecisionsController < ApplicationController
   def index
-    @decisions=Decision.all.where(dec_type: 6)
+    @decisions=Decision.all
   end
 
   def new
+    if user_signed_in? && current_user.arbiter == nil
+      @arbiter=Arbiter.create()
+      current_user.arbiter=@arbiter
+      @arbiter.save
+    end
     @decision=Decision.new
+    @firstoption=Firstoption.new
+    @secondoption=Secondoption.new
   end
 
   def create
-    if Decision.type_index(params[:decision][:dec_type]) == nil
+    @decision=Decision.new(decision_params)
+    if user_signed_in?
+      current_user.arbiter.decisions << @decision
+      # make this take preferences into account
+      @decision.app_choice = rand(2)
+    else
+      # make this take global preferences into account?
+      @decision.app_choice = rand(2)
+    end
+    if @decision.save
+      @firstoption=Firstoption.create(description: params[:decision][:firstoption][:description])
+      if @firstoption.description == nil
+        @firstoption.description = @decision.type.possibility_name(0)
+      end
+      @secondoption=Secondoption.create(description: params[:decision][:secondoption][:description])
+      if @secondoption.description == nil
+        @secondoption.description = @decision.type.possibility_name(1)
+      end
+      @decision.firstoption=@firstoption
+      @decision.secondoption=@secondoption
+      redirect_to edit_decision_path(@decision)
+    else
       flash[:notice] = "Invalid Decision"
       redirect_to root_path
-    else
-      @decision=Decision.new(dec_type: Decision.type_index(params[:decision][:dec_type]))
-      @decision.app_choice = rand(2)
-      if user_signed_in?
-        @decision.user_id = current_user.id
-      end
-      if @decision.save
-        if @decision.dec_type == 6
-          redirect_to edit_decision_path(@decision)
-        else
-          redirect_to decision_path(@decision)
-        end
-      else
-        flash[:notice] = "Invalid Decision"
-        redirect_to root_path
-      end
     end
   end
 
@@ -50,9 +62,6 @@ class DecisionsController < ApplicationController
       else
         flash[:notice] = "bad commit"
       end
-    elsif params[:commit] == "Create Custom Decision"
-      @decision.update(custom_decision_params)
-      @decision.update(a_count: 0, b_count: 0)
     end
     if @decision.save
       redirect_to decision_path(@decision)
@@ -67,7 +76,7 @@ class DecisionsController < ApplicationController
 
   private
 
-  def custom_decision_params
-    params.require(:decision).permit(:option_a, :option_b, :description)   
+  def decision_params
+    params.require(:decision).permit(:type_id, :description)   
   end
 end

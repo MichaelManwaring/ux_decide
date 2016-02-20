@@ -2,25 +2,13 @@
 <p>Find me in app/views/decisions/show.html.erb</p>
 
 
-<% if @decision.dec_type == 6 %>
-	<%= content_tag :h2, @decision.description  %>
-	<%= content_tag :h2, "The community has suggested " + @decision.option_a + ": " + @decision.a_count.to_s + " times" %>
-	<%= content_tag :h2, "The community has suggested " + @decision.option_b + ": " + @decision.b_count.to_s + " times" %>
-	<%= content_tag :h2, "So you should do: " + @decision.voter_result %>
-<% end %>
 
-<%= content_tag :h2, "We think you should do:" %>
-<%= @decision.app_result %>
+
+<%= content_tag :h2, "We said suggested:" %>
+<%= @decision.app_choice %>
 
 
 
-<% if user_signed_in? && @decision.user_id == current_user.id %>
-	<%= form_for @decision, url: decision_path(@decision), method: :put do |d| %>
-		<%= d.submit("I took your advice") %>
-		<%= d.submit("Actually, I'm going with the other one") %>
-	<% end %>
-	<%= content_tag :h2, "You have chosen:" %>
-<% else %>
-	<%= content_tag :h2, "The creator of this decision chose:" %>
-<% end %>
-<%= @decision.user_result %>
+
+<%= content_tag :h2, "The creator of this decision have chose:" %>
+<%= @decision.user_choice %>

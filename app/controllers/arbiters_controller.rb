@@ -1,4 +1,4 @@
-class VotesController < ApplicationController
+class ArbitersController < ApplicationController
   def new
   end
 
@@ -9,8 +9,5 @@ class VotesController < ApplicationController
   end
 
   def update
-  end
-
-  def destroy
   end
 end

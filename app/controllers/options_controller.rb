@@ -1,4 +1,4 @@
-class VotesController < ApplicationController
+class OptionsController < ApplicationController
   def new
   end
 
