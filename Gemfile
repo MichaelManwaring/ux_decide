@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
-
+# omniauth to make user sign up/in easier
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'omniauth-google'
 # devise, which is being used to enable omni-auth
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
