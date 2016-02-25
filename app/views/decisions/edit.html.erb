@@ -2,10 +2,10 @@
 <p>Find me in app/views/decisions/edit.html.erb</p>
 
 <%= content_tag :h2, "We think you should do:" %>
-<%= @decision.app_choice %>
+<%= @decision.display_app_choice() %>
 <%= form_for @decision, url: decision_path(@decision), method: :put do |d| %>
 	<%= d.submit("I took your advice") %>
 	<%= d.submit("Actually, I'm going with the other one") %>
 <% end %>
 <%= content_tag :h2, "You have chosen:" %>
-<%= @decision.user_choice %>
+<%= @decision.display_user_choice() %>

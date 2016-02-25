@@ -1,3 +1,10 @@
+<%= render "devise/shared/links" %>
+
+<button id="hide_button">Manual Sign up</button>
+<br>
+
+
+<div id="sign_hider">
 <h2>Log in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -23,4 +30,5 @@
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+</div>
+

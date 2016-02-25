@@ -4,6 +4,40 @@ class Decision < ActiveRecord::Base
 	has_one :firstoption
 	has_one :secondoption
 
+
+	def display_app_choice
+		if self.app_choice == 0
+			return self.firstoption.description
+		elsif self.app_choice ==1 
+			return self.secondoption.description
+		else
+			return "No choice made"
+		end
+	end
+	def display_user_choice
+		if self.user_choice == 0
+			return self.firstoption.description
+		elsif self.user_choice ==1 
+			return self.secondoption.description
+		else
+			return "No choice made"
+		end
+	end
+	
+	def user_choice_assign(commit)
+		if commit == "I took your advice"
+			self.user_choice = self.app_choice
+		elsif commit == "Actually, I'm going with the other one"
+			if self.app_choice == 0
+				self.user_choice = 1
+			elsif self.app_choice == 1
+				self.user_choice = 0
+			else
+				flash[:notice] = "bad commit"
+			end
+		end			
+	end			
+
 	# TYPEDESC = ["This or That", "Cheap or Expensive", "Healthy or Indulge", "Easy or Hard", "Safe or Risky", "Adventure or Relax", "Custom"]
 	# def decision_type
 	# 	TYPEDESC[self.dec_type]

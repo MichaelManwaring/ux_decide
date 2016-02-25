@@ -4,15 +4,23 @@
 <%= form_for @decision do |d| %>
 	<%= d.label :type_id %>
 	<%= d.select(:type_id, Type.all.collect {|t| [ t.description, t.id ] }) %>
-	<%= d.label :description %>
-	<%= d.text_area :description %>
-	<%= d.fields_for @firstoption do |a| %>
-		<%= a.label :description %>
-		<%= a.text_field :description %>
-	<% end %>
-	<%= d.fields_for @secondoption do |b| %>
-		<%= b.label :description %>
-		<%= b.text_field :description %>
-	<% end %>
+	<!-- make a hiding method for custom -->
+	<div id="custom_dec_hider">
+		<%= content_tag :h3, "What is the background for this decision?" %>
+		<%= d.text_area :description %>
+		<div class="option_input" id="first_option_input">
+			<%= d.fields_for @firstoption do |a| %>
+				<%= content_tag :h3, "The first option is:", :id => "first_option_description" %>
+				<%= a.text_field :description %>
+			<% end %>
+		</div>
+		<div class="option_input" id="second_option_input">
+			<%= d.fields_for @secondoption do |b| %>
+				<%= content_tag :h3, "The second option is:", :id => "second_option_description" %>
+				<%= b.text_field :description %>
+			<% end %>
+		</div>
+	</div>
 	<%= d.submit %>
 <% end %>
+<button id="hide_button">Custom Decision</button>
