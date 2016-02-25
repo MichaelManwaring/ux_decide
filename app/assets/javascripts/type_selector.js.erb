@@ -1,0 +1,9 @@
+// this function changes the description boxes for each option
+$(document).on("page:change", function() {
+	$( "select" ).change(function() {
+		var type_id = $('select').val()
+		var types_string = $('select').text().replace( /\n/g, " " ).split(" ")
+  		$("#first_option_description").text(types_string[type_id*3-3] + " Option:")
+  		$("#second_option_description").text(types_string[type_id*3-1] + " Option:")
+	});
+})

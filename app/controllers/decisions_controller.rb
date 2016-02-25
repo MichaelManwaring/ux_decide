@@ -18,19 +18,26 @@ class DecisionsController < ApplicationController
     @decision=Decision.new(decision_params)
     if user_signed_in?
       current_user.arbiter.decisions << @decision
-      # make this take preferences into account
-      @decision.app_choice = rand(2)
+      @preference = @decision.arbiter.preferences.where(type: @decision.type).last
+      # Create Preference if one does not exist
+      unless @preference
+        puts "=========MAKING PREFERENCE=============="
+        @preference=Preference.create(a_score: 1, b_score: 1)
+        @decision.arbiter.preferences << @preference
+        @decision.type.preferences << @preference
+      end
+      @decision.app_choice = @preference.make_choice
     else
       # make this take global preferences into account?
       @decision.app_choice = rand(2)
     end
     if @decision.save
       @firstoption=Firstoption.create(description: params[:decision][:firstoption][:description])
-      if @firstoption.description == nil
+      if @firstoption.description == ""
         @firstoption.description = @decision.type.possibility_name(0)
       end
       @secondoption=Secondoption.create(description: params[:decision][:secondoption][:description])
-      if @secondoption.description == nil
+      if @secondoption.description == ""
         @secondoption.description = @decision.type.possibility_name(1)
       end
       @decision.firstoption=@firstoption
@@ -52,16 +59,11 @@ class DecisionsController < ApplicationController
 
   def update
     @decision=Decision.find(params[:id])
-    if params[:commit] == "I took your advice"
-      @decision.user_choice = @decision.app_choice
-    elsif params[:commit] == "Actually, I'm going with the other one"
-      if @decision.app_choice == 0
-        @decision.user_choice = 1
-      elsif @decision.app_choice == 1
-        @decision.user_choice = 0
-      else
-        flash[:notice] = "bad commit"
-      end
+    @decision.user_choice_assign(params[:commit])
+    if user_signed_in?  
+      # update preference
+      @preference = @decision.arbiter.preferences.where(type: @decision.type).last
+      @preference.modify_preference(@decision.user_choice)
     end
     if @decision.save
       redirect_to decision_path(@decision)

@@ -5,6 +5,20 @@
 
 
 
+<% @user.arbiter.preferences.each do |p| %>
+<%= p.type.description %>
+<br>
+<%= p.type.possibility_name(0) %>
+<br>
+<%= p.explain_preference_a %>%
+<br>
+<%= p.type.possibility_name(1) %>
+<br>
+<%= p.explain_preference_b %>%
+<br>
+<% end %>
+
+<br>
 
 
 

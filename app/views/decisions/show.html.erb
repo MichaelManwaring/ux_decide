@@ -5,10 +5,11 @@
 
 
 <%= content_tag :h2, "We said suggested:" %>
-<%= @decision.app_choice %>
+<%= @decision.display_app_choice() %>
 
-
-
-
-<%= content_tag :h2, "The creator of this decision have chose:" %>
-<%= @decision.user_choice %>
+<% if current_users_decision %>
+	<%= content_tag :h2, "You have chosen:" %>
+<% else %>
+	<%= content_tag :h2, "The creator of this decision have chose:" %>
+<% end %>
+<%= @decision.display_user_choice() %>

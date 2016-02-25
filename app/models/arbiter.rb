@@ -4,4 +4,6 @@ class Arbiter < ActiveRecord::Base
 	has_many :votes
 	has_many :voted_options, through: :votes
 	has_many :preferences
+
+	
 end

@@ -1,55 +1,55 @@
 Rails.application.routes.draw do
-  get 'options/new'
+  # get 'options/new'
 
-  get 'options/create'
+  # get 'options/create'
 
-  get 'options/edit'
+  # get 'options/edit'
 
-  get 'options/update'
+  # get 'options/update'
 
-  get 'options/destroy'
+  # get 'options/destroy'
 
-  get 'votes/new'
+  # get 'votes/new'
 
-  get 'votes/create'
+  # get 'votes/create'
 
-  get 'votes/edit'
+  # get 'votes/edit'
 
-  get 'votes/update'
+  # get 'votes/update'
 
-  get 'votes/destroy'
+  # get 'votes/destroy'
 
-  get 'preferences/new'
+  # get 'preferences/new'
 
-  get 'preferences/create'
+  # get 'preferences/create'
 
-  get 'preferences/edit'
+  # get 'preferences/edit'
 
-  get 'preferences/update'
+  # get 'preferences/update'
 
-  get 'arbiters/new'
+  # get 'arbiters/new'
 
-  get 'arbiters/create'
+  # get 'arbiters/create'
 
-  get 'arbiters/edit'
+  # get 'arbiters/edit'
 
-  get 'arbiters/update'
+  # get 'arbiters/update'
 
-  get 'profile/new'
+  # get 'profile/new'
 
-  get 'profile/create'
+  # get 'profile/create'
 
-  get 'profile/update'
+  # get 'profile/update'
 
-  get 'profile/show'
+  # get 'profile/show'
 
-  get 'votes/create'
+  # get 'votes/create'
 
-  get 'votes/update'
+  # get 'votes/update'
 
-  get 'votes/destroy'
+  # get 'votes/destroy'
 
-  get 'users/show'
+  # get 'users/show'
 
   devise_for :users, controllers: { sessions: "users/sessions", omniauth_callbacks: 'omniauth_callbacks' }
 
@@ -71,7 +71,7 @@ Rails.application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-  resources :decisions, :users
+  resources :decisions, :users, :arbiters, :votes, :preferences
 
   # Example resource route with options:
   #   resources :products do
