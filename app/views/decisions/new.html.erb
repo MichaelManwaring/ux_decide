@@ -1,12 +1,14 @@
-<h1>Decisions#new</h1>
-<p>Find me in app/views/decisions/new.html.erb</p>
+<h1>choose.</h1>
+
 
 <%= form_for @decision do |d| %>
-	<%= d.label :type_id %>
+	<%= content_tag :h3, "What kind of decision is this?" %>
 	<%= d.select(:type_id, Type.all.collect {|t| [ t.description, t.id ] }) %>
 	<!-- make a hiding method for custom -->
 	<div id="custom_dec_hider">
 		<%= content_tag :h3, "What is the background for this decision?" %>
+		<%= content_tag :span, "Entering a description here will make this a public decision that other users can vote on." %>
+		<br>
 		<%= d.text_area :description %>
 		<div class="option_input" id="first_option_input">
 			<%= d.fields_for @firstoption do |a| %>
@@ -21,6 +23,9 @@
 			<% end %>
 		</div>
 	</div>
+	<br>
 	<%= d.submit %>
 <% end %>
+<% if user_signed_in? %>
 <button id="hide_button">Custom Decision</button>
+<% end %>
