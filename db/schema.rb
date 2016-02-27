@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224161521) do
+ActiveRecord::Schema.define(version: 20160226161207) do
 
   create_table "arbiters", force: :cascade do |t|
     t.integer  "user_id"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20160224161521) do
     t.datetime "updated_at",  null: false
     t.integer  "arbiter_id"
     t.integer  "type_id"
-    t.boolean  "custom"
+    t.boolean  "voting_open"
   end
 
   create_table "firstoptions", force: :cascade do |t|

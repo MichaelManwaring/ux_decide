@@ -1,6 +1,24 @@
-<h1>Decisions#index</h1>
-<p>Find me in app/views/decisions/index.html.erb</p>
-
-<% @decisions.each do |d| %>
-	<%=link_to d.description, decision_path(d) %> 
+<%= content_tag :h1, "Your Custom Decisions:" %>
+<ol>	
+<% @user_decisions.each do |d| %>
+	<br>
+	<li><%=link_to d.name(), decision_path(d) %></li>
 <% end %>
+</ol>
+<table>
+	<tr>
+		<th>Decision name</th>
+		<th>Votes for first option</th>
+		<th>Votes for second option</th>
+	</tr>
+<%= content_tag :h1, "Other Peoples Decisions:" %>
+<% @other_decisions.each do |d| %>
+	<tr>
+	<td><%=link_to d.name(), decision_path(d) %></td> 
+	<td><%= d.firstoption.votes.count() %></td> 
+	<td><%= d.secondoption.votes.count() %></td> 
+	</tr>
+<% end %>
+</table>
+
+

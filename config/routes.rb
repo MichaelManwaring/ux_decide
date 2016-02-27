@@ -1,60 +1,7 @@
 Rails.application.routes.draw do
-  # get 'options/new'
-
-  # get 'options/create'
-
-  # get 'options/edit'
-
-  # get 'options/update'
-
-  # get 'options/destroy'
-
-  # get 'votes/new'
-
-  # get 'votes/create'
-
-  # get 'votes/edit'
-
-  # get 'votes/update'
-
-  # get 'votes/destroy'
-
-  # get 'preferences/new'
-
-  # get 'preferences/create'
-
-  # get 'preferences/edit'
-
-  # get 'preferences/update'
-
-  # get 'arbiters/new'
-
-  # get 'arbiters/create'
-
-  # get 'arbiters/edit'
-
-  # get 'arbiters/update'
-
-  # get 'profile/new'
-
-  # get 'profile/create'
-
-  # get 'profile/update'
-
-  # get 'profile/show'
-
-  # get 'votes/create'
-
-  # get 'votes/update'
-
-  # get 'votes/destroy'
-
-  # get 'users/show'
-
   devise_for :users, controllers: { sessions: "users/sessions", omniauth_callbacks: 'omniauth_callbacks' }
 
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
-
 
   root 'decisions#new'
 

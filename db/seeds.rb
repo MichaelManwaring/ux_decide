@@ -8,4 +8,10 @@
 
 Type.create(description: "This or That")
 Type.create(description: "Safe or Risky")
-Type.create(description: "Expensive or Cheap")
+Type.create(description: "Cheap or Expensive")
+Type.create(description: "Healthy or Indulgent")
+Type.create(description: "Easy or Hard")
+Type.create(description: "Adventure or Relax")
+Type.create(description: "Altruistic or Selfish")
+Type.create(description: "Form or Function")
+

@@ -1,15 +1,30 @@
-<h1>Decisions#show</h1>
-<p>Find me in app/views/decisions/show.html.erb</p>
+<%= content_tag :h1, @decision.name() %>
 
 
-
-
-<%= content_tag :h2, "We said suggested:" %>
-<%= @decision.display_app_choice() %>
+<%= content_tag :h2, "We suggested:" %>
+<%= content_tag :h3, @decision.display_app_choice() %>
 
 <% if current_users_decision %>
 	<%= content_tag :h2, "You have chosen:" %>
+	<%= content_tag :h3, @decision.display_user_choice() %>
+	<%= link_to "Edit Choice", edit_decision_path(@decision) %>
+	<%= form_for @decision, url: decision_path(@decision), method: :put do |d| %>
+		<% if @decision.voting_open %>
+			<%= d.submit("Turn Off Voting") %>
+		<% else %>
+			<%= d.submit("Turn On Voting") %>
+		<% end %>
+	<% end %>
+	<%= link_to "Delete Decision", decision_path(@decision), method: :delete, data: {confirm: "Are you sure you want to delete this decision?"} %>
 <% else %>
-	<%= content_tag :h2, "The creator of this decision have chose:" %>
+	<h3>Help them out by voting!</h3>
+	<%= form_for @vote, url: votes_path(@decision), method: :post do |v| %>
+		<%= v.submit("#{@decision.firstoption.description}") %>
+		<%= v.submit("#{@decision.secondoption.description}") %>
+	<% end %>
 <% end %>
-<%= @decision.display_user_choice() %>
+
+<h3><%=@decision.firstoption.description%> votes:</h3>
+<%= @decision.firstoption.votes.count() %>
+<h3><%=@decision.secondoption.description%> votes:</h3>
+<%= @decision.secondoption.votes.count() %>

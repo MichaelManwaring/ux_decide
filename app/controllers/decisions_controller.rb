@@ -1,6 +1,7 @@
 class DecisionsController < ApplicationController
   def index
-    @decisions=Decision.all
+    @user_decisions=Decision.where.not(description: "").where(arbiter_id: current_user.arbiter.id)
+    @other_decisions=Decision.where.not(arbiter_id: current_user.arbiter.id).where(voting_open: true)
   end
 
   def new
@@ -18,7 +19,7 @@ class DecisionsController < ApplicationController
     @decision=Decision.new(decision_params)
     if user_signed_in?
       current_user.arbiter.decisions << @decision
-      @preference = @decision.arbiter.preferences.where(type: @decision.type).last
+      @preference = @decision.find_preference()
       # Create Preference if one does not exist
       unless @preference
         puts "=========MAKING PREFERENCE=============="
@@ -26,20 +27,21 @@ class DecisionsController < ApplicationController
         @decision.arbiter.preferences << @preference
         @decision.type.preferences << @preference
       end
+      # make app_choice by calling function on preference
       @decision.app_choice = @preference.make_choice
     else
       # make this take global preferences into account?
       @decision.app_choice = rand(2)
     end
+    @decision.description == "" ? @decision.voting_open = false : @decision.voting_open = true
     if @decision.save
+      # create first option and give it name from type if user does not specify
       @firstoption=Firstoption.create(description: params[:decision][:firstoption][:description])
-      if @firstoption.description == ""
-        @firstoption.description = @decision.type.possibility_name(0)
-      end
+      @firstoption.description = @decision.type.possibility_name(0) if @firstoption.description == ""
+      # create second option and give it name from type if user does not specify
       @secondoption=Secondoption.create(description: params[:decision][:secondoption][:description])
-      if @secondoption.description == ""
-        @secondoption.description = @decision.type.possibility_name(1)
-      end
+      @secondoption.description = @decision.type.possibility_name(1) if @secondoption.description == ""
+      # attach options to decision
       @decision.firstoption=@firstoption
       @decision.secondoption=@secondoption
       redirect_to edit_decision_path(@decision)
@@ -50,6 +52,7 @@ class DecisionsController < ApplicationController
   end
 
   def show
+    @vote=Vote.new
     @decision=Decision.find(params[:id])
   end
 
@@ -59,21 +62,25 @@ class DecisionsController < ApplicationController
 
   def update
     @decision=Decision.find(params[:id])
-    @decision.user_choice_assign(params[:commit])
-    if user_signed_in?  
-      # update preference
-      @preference = @decision.arbiter.preferences.where(type: @decision.type).last
-      @preference.modify_preference(@decision.user_choice)
-    end
+    if params[:commit] == "Turn Off Voting"
+      @decision.voting_open=false
+    elsif params[:commit] == "Turn On Voting"
+      @decision.voting_open=true
+    else
+      @decision.user_choice_assign(params[:commit])
+    end    
     if @decision.save
+      @decision.log_results_in_preference() if user_signed_in?
       redirect_to decision_path(@decision)
     else
       flash[:notice] = "Could not update Decision"
       redirect_to new_decision_path
     end
   end
-
+  
   def destroy
+    Decision.find(params[:id]).destroy
+    redirect_to decisions_path
   end
 
   private

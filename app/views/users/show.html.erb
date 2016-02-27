@@ -1,9 +1,8 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
-
-
-
-
+<% if @user == current_user %>
+	<%= content_tag :h1, "Your Profile" %>
+<% else %>
+	<%= content_tag :h1, "Other Users Profile" %>
+<% end %>
 
 <% @user.arbiter.preferences.each do |p| %>
 <%= p.type.description %>
