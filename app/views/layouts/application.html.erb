@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>UxDecide</title>
-	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<title>choose.</title>
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	<%= csrf_meta_tags %>
 </head>
 <body>
+	<h1 id="title_banner">choose.</h1>
+
 	<nav>
-		<%= link_to "Decision", root_path() %>
+		<div class='nav_button'><%= link_to "Decision", root_path() %></div>
 		<% if user_signed_in? %>
-			<%= link_to "Profile", user_path(current_user) %>
-			<%= link_to "Help Others", decisions_path() %>
+			<div class='nav_button'><%= link_to "Profile", user_path(current_user) %></div>
+			<div class='nav_button'><%= link_to "Vote", decisions_path() %></div>
 		<% else %>
-			<%= link_to "Sign Up", new_user_registration_path() %>
-			<%= link_to "Sign In", new_user_session_path() %>
+			<div class='nav_button'><%= link_to "Sign Up", new_user_registration_path() %></div>
+			<div class='nav_button'><%= link_to "Sign In", new_user_session_path() %></div>
 		<% end %>
 	</nav>
 
 	<!-- flash alert and notice -->
 	<p class="notice"><%= notice %></p>
 	<p class="alert"><%= alert %></p>
-
-	<%= yield %>
-
+	<div class="main_page">
+		<%= yield %>
+	</div>
+	
 </body>
 </html>
