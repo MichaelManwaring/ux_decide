@@ -25,6 +25,8 @@ body{
 		background-color: $light_blue;
 		height: 20vw;
 		margin:0;
+		border-top-left-radius: 2vw;
+		border-top-right-radius: 2vw;
 		@media (min-width: 1000px){
 			width:90%;
 			padding: 5%;
@@ -34,21 +36,26 @@ body{
 	}
 	nav{
 		width:100%;
-		height: 17vw;
+		height: 12vw;
 		display: flex;
 		justify-content: space-around;
 		background-color: $black;
-
+		border-bottom-left-radius: 2vw;
+		border-bottom-right-radius: 2vw;
+		
 		.nav_button{
 			margin: 3vw;
 			text-align: center;
 			width: 30%;
-			height: 10vw;
+			height: 8.7vw;
 			background-color: $grey;
+			border: 3px solid $medium_blue;
+			margin: 1vw;
+			border-radius: 2vw;
 
 			&:hover{
-				color: $light_blue;
-				background-color: $black;
+				// color: $black;
+				background-color: $light_blue;
 			}
 			a{
 				display:block;
@@ -57,7 +64,7 @@ body{
 				font-size: 4vw;
 				color: $white;
 				&:hover{
-					color: $light_blue;
+					color: $grey;
 				}
 			}
 		}
@@ -67,7 +74,11 @@ body{
 		width: 90%;
 		margin: 5%;
 		text-align: center;
-
+		div{
+			display:block;
+			text-align: center;
+			width:100%
+		}
 		h3{
 			font-size: 4vw;
 			width: 100%;

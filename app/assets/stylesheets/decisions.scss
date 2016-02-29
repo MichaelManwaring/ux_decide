@@ -4,6 +4,7 @@
 
 
 
+
 $light_blue: #74b2d7;
 $medium_blue: #4788b0;
 $dark_blue: #1c638d;
@@ -15,6 +16,7 @@ $white: #fdfeff;
 
 select{
 	-webkit-appearance: none;
+	font-family: 'Montserrat', sans-serif;
 	text-align-last: center;
 	font-size: 7vw;
 	width: 80%;
@@ -24,6 +26,7 @@ select{
 
 }
 textarea{
+	font-family: 'Montserrat', sans-serif;
 	color: $white;
 	width: 80%;
 	height: 120px;
@@ -38,6 +41,7 @@ textarea{
 	// background-repeat: no-repeat;
 }
 input{
+	font-family: 'Montserrat', sans-serif;
 	text-align: center;
 	font-size: 7vw;
 	width:80%;
@@ -48,10 +52,25 @@ input{
 
 }
 button{
+	font-family: 'Montserrat', sans-serif;
 	background-color: $dark_blue;
 	font-size: 7vw;
 	width: 80%;
 	border-radius: 2vw;
 	color: $white;
 
+}
+article{
+	border: 3px solid $medium_blue;
+	margin: 1vw;
+	border-radius: 2vw;
+	p{
+		border: 3px solid $light_blue;
+		margin: 1vw;
+		border-radius: 2vw;
+		strong{
+			color: $medium_blue;
+			font-size: 3vw;
+		}
+	}
 }

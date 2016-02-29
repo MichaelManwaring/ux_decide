@@ -24,14 +24,24 @@
 	</div>
 	<br>
 	<br>
-	<%= d.submit "Ask choose." %>
+	<%= d.submit "choose. for me" %>
 	<% end %>
 <% if user_signed_in? %>
 	<br>
 	<button id="hide_button">Custom Decision</button>
-<% end %>
-<article>
+	<br>
+	<br>
+	<article>
 	<p>
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio qui cumque perferendis sapiente, blanditiis dolorum nobis quae id tempore vel. Voluptatum eligendi ex, adipisicing elit. Laudantium illum eligendi nobis quasi vitae, Magni ipsam, delectus, optio facere ad veritatis architecto, sint ab at, rerum blanditiis?
+		 The responses you give to the app's choices will be used to learn how to better advise you on future decisions of the same type. Go to your Profile to view your preferences across all of <strong>choose.</strong>'s decision types. You can also click "Custom Decision" if you would like to ask the <strong>choose.</strong> community to anonymously vote on your decision.
 	</p>
 </article>
+<% else %>
+<br>
+<br>
+<article>
+	<p>
+		Life in the 21<sup>st</sup> Century is overloaded with choice, and taking the time to ponder every decision will leave you hung up on the details. <strong>choose.</strong> is here to make that easier by helping you decide between two options. Select a category above and start making decisions or sign up and allow <strong>choose.</strong> to start learning your preferences, as well as creating and voting on custom decisions.
+	</p>
+</article>
+<% end %>
