@@ -1,33 +1,39 @@
+<div class="facebook_button">
 <%= render "devise/shared/links" %>
-<button id="hide_button">Manual Sign In</button>
+</div>
+<button id="hide_button">Sign In with email</button>
 <br>
 
 
 <div id="sign_hider">
-<h2>Log in</h2>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <br />
+    <%= f.email_field :email, autofocus: true, placeholder: "Email" %>
   </div>
 
   <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <br />
+    <%= f.password_field :password, autocomplete: "off", placeholder: "Password" %>
   </div>
-
+<br>
   <% if devise_mapping.rememberable? -%>
-    <div class="field">
+    <div class="remember">
       <%= f.check_box :remember_me %>
       <%= f.label :remember_me %>
     </div>
   <% end -%>
+<br>
 
   <div class="actions">
     <%= f.submit "Log in" %>
   </div>
 <% end %>
+<br>
+<div class="facebook_button">
+  
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
   <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
 <% end -%>
+</div>
 </div>

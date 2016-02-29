@@ -15,7 +15,7 @@ $white: #fdfeff;
 
 
 select{
-	-webkit-appearance: none;
+	// -webkit-appearance: none;
 	font-family: 'Montserrat', sans-serif;
 	text-align-last: center;
 	font-size: 7vw;
@@ -43,7 +43,7 @@ textarea{
 input{
 	font-family: 'Montserrat', sans-serif;
 	text-align: center;
-	font-size: 7vw;
+	font-size: 6.5vw;
 	width:80%;
 	border-radius: 2vw;
 	background-color: $medium_blue;
@@ -54,7 +54,7 @@ input{
 button{
 	font-family: 'Montserrat', sans-serif;
 	background-color: $dark_blue;
-	font-size: 7vw;
+	font-size: 6.5vw;
 	width: 80%;
 	border-radius: 2vw;
 	color: $white;
@@ -72,5 +72,14 @@ article{
 			color: $medium_blue;
 			font-size: 3vw;
 		}
+	}
+}
+.remember{
+	width: 100%;
+	margin: 0;
+	text-align: center;
+	font-size: 2vw;
+	input{
+		width:3vw;
 	}
 }

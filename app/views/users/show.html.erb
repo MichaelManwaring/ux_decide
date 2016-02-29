@@ -22,7 +22,8 @@
 
 
 
-
+<div class="other_button">
 <% if @user == current_user %>
 	<%= link_to "Sign Out", destroy_user_session_path(), confirm: 'Are you sure that you would like to sign out?', :method => :delete %>
 <% end %>
+</div>
