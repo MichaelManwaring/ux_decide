@@ -1,4 +1,5 @@
-<h1>choose.</h1>
+
+
 
 
 <%= form_for @decision do |d| %>
@@ -7,25 +8,40 @@
 	<!-- make a hiding method for custom -->
 	<div id="custom_dec_hider">
 		<%= content_tag :h3, "What is the background for this decision?" %>
-		<%= content_tag :span, "Entering a description here will make this a public decision that other users can vote on." %>
-		<br>
-		<%= d.text_area :description %>
+		<%= d.text_area :description, :id => "description", :placeholder => "Entering a description here will make this a public decision that other users can vote on." %>
 		<div class="option_input" id="first_option_input">
 			<%= d.fields_for @firstoption do |a| %>
-				<%= content_tag :h3, "The first option is:", :id => "first_option_description" %>
-				<%= a.text_field :description %>
+			<%= content_tag :h3, "The first option is:", :id => "first_option_description" %>
+			<%= a.text_field :description %>
 			<% end %>
 		</div>
 		<div class="option_input" id="second_option_input">
 			<%= d.fields_for @secondoption do |b| %>
-				<%= content_tag :h3, "The second option is:", :id => "second_option_description" %>
-				<%= b.text_field :description %>
+			<%= content_tag :h3, "The second option is:", :id => "second_option_description" %>
+			<%= b.text_field :description %>
 			<% end %>
 		</div>
 	</div>
 	<br>
-	<%= d.submit %>
-<% end %>
+	<br>
+	<%= d.submit "choose. for me" %>
+	<% end %>
 <% if user_signed_in? %>
-<button id="hide_button">Custom Decision</button>
+	<br>
+	<button id="hide_button">Custom Decision</button>
+	<br>
+	<br>
+	<article>
+	<p>
+		 The responses you give to the app's choices will be used to learn how to better advise you on future decisions of the same type. Go to your Profile to view your preferences across all of <strong>choose.</strong>'s decision types. You can also click "Custom Decision" if you would like to ask the <strong>choose.</strong> community to anonymously vote on your decision.
+	</p>
+</article>
+<% else %>
+<br>
+<br>
+<article>
+	<p>
+		Life in the 21<sup>st</sup> Century is overloaded with choice, and taking the time to ponder every decision will leave you hung up on the details. <strong>choose.</strong> is here to make that easier by helping you decide between two options. Select a category above and start making decisions or sign up and allow <strong>choose.</strong> to start learning your preferences, as well as creating and voting on custom decisions.
+	</p>
+</article>
 <% end %>

@@ -1,0 +1,112 @@
+$light_blue: #74b2d7;
+$medium_blue: #4788b0;
+$dark_blue: #1c638d;
+$black: #333333;
+$grey: #444444;
+$white: #fdfeff;
+
+
+
+body{
+	font-family: 'Montserrat', sans-serif;
+	// font-family: GeosansLight;
+	color: $white;
+	background-color: $grey;
+	@media (min-width: 1000px){
+		background-image: url(sky.jpg);
+	
+	}
+	#title_banner{
+		padding: 10%;
+		color:$white;
+		width:80%;
+		text-align: center;
+		font-size: 15vw;
+		background-color: $light_blue;
+		height: 20vw;
+		margin:0;
+		border-top-left-radius: 2vw;
+		border-top-right-radius: 2vw;
+		@media (min-width: 1000px){
+			width:90%;
+			padding: 5%;
+			height: 5vw;
+			font-size: 10vw;
+		}
+	}
+	nav{
+		width:100%;
+		height: 12vw;
+		display: flex;
+		justify-content: space-around;
+		background-color: $black;
+		border-bottom-left-radius: 2vw;
+		border-bottom-right-radius: 2vw;
+		
+		.nav_button{
+			margin: 3vw;
+			text-align: center;
+			width: 30%;
+			height: 8.7vw;
+			background-color: $grey;
+			border: 3px solid $medium_blue;
+			margin: 1vw;
+			border-radius: 2vw;
+
+			&:hover{
+				// color: $black;
+				background-color: $light_blue;
+			}
+			a{
+				display:block;
+				margin: 5%;
+				text-decoration: none;
+				font-size: 4vw;
+				color: $white;
+				&:hover{
+					color: $grey;
+				}
+			}
+		}
+	}
+
+	.main_page{
+		width: 90%;
+		margin: 5%;
+		text-align: center;
+		div{
+			display:block;
+			text-align: center;
+			// width:100%
+		}
+		h3{
+			font-size: 4vw;
+			width: 100%;
+			text-align: center;
+		}
+	}
+}
+.other_button{
+	margin: 10%;
+	text-align: center;
+	width: 80%;
+	height: 8.7vw;
+	background-color: $light_blue;
+	border: 3px solid $medium_blue;
+	border-radius: 2vw;
+	&:hover{
+				// color: $black;
+				background-color: $light_blue;
+	}
+	a{
+		vertical-align: middle;
+		display:block;
+		margin: 2%;
+		text-decoration: none;
+		font-size: 5vw;
+		color: $white;
+		&:hover{
+		color: $grey;
+		}
+	}
+}
