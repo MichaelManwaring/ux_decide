@@ -4,24 +4,54 @@
 
 
 
-.main_page{
-	width: 90%;
-	margin: 5%;
-	text-align: center;
+$light_blue: #74b2d7;
+$medium_blue: #4788b0;
+$dark_blue: #1c638d;
+$black: #333333;
+$grey: #444444;
+$white: #fdfeff;
 
-	h3{
-		font-size: 4vw;
-		width: 100%;
-		text-align: center;
-	}
-}
+
+
 select{
+	-webkit-appearance: none;
+	text-align-last: center;
 	font-size: 7vw;
-}
+	width: 80%;
+	border-radius: 2vw;
+	background-color: $light_blue;
+	color: $white;
 
-button{
-	font-size: 7vw;
+}
+textarea{
+	color: $white;
+	width: 80%;
+	height: 120px;
+	border: 3px solid #cccccc;
+	padding: 5px;
+	font-size: 1.4vw;
+	text-align: center;
+	background-color: $medium_blue;
+	// font-family: Tahoma, sans-serif;
+	// background-image: url(sky.gif);
+	// background-position: bottom right;
+	// background-repeat: no-repeat;
 }
 input{
+	text-align: center;
 	font-size: 7vw;
+	width:80%;
+	border-radius: 2vw;
+	background-color: $medium_blue;
+	color: $white;
+
+
+}
+button{
+	background-color: $dark_blue;
+	font-size: 7vw;
+	width: 80%;
+	border-radius: 2vw;
+	color: $white;
+
 }

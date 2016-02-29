@@ -8,9 +8,7 @@
 	<!-- make a hiding method for custom -->
 	<div id="custom_dec_hider">
 		<%= content_tag :h3, "What is the background for this decision?" %>
-		<%= content_tag :span, "Entering a description here will make this a public decision that other users can vote on." %>
-		<br>
-		<%= d.text_area :description %>
+		<%= d.text_area :description, :id => "description", :placeholder => "Entering a description here will make this a public decision that other users can vote on." %>
 		<div class="option_input" id="first_option_input">
 			<%= d.fields_for @firstoption do |a| %>
 			<%= content_tag :h3, "The first option is:", :id => "first_option_description" %>
@@ -25,8 +23,15 @@
 		</div>
 	</div>
 	<br>
-	<%= d.submit %>
+	<br>
+	<%= d.submit "Ask choose." %>
 	<% end %>
-	<% if user_signed_in? %>
+<% if user_signed_in? %>
+	<br>
 	<button id="hide_button">Custom Decision</button>
 <% end %>
+<article>
+	<p>
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio qui cumque perferendis sapiente, blanditiis dolorum nobis quae id tempore vel. Voluptatum eligendi ex, adipisicing elit. Laudantium illum eligendi nobis quasi vitae, Magni ipsam, delectus, optio facere ad veritatis architecto, sint ab at, rerum blanditiis?
+	</p>
+</article>

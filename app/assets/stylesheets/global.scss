@@ -13,48 +13,65 @@ body{
 	color: $white;
 	background-color: $grey;
 	@media (min-width: 1000px){
-		background-image: url(trees.jpg);
+		background-image: url(sky.jpg);
+	
 	}
-}
-
-#title_banner{
-	padding: 10%;
-	color:$white;
-	width:80%;
-	text-align: center;
-	font-size: 15vw;
-	background-color: $light_blue;
-	height: 20vw;
-	margin:0;
-
-}
-nav{
-	width:100%;
-	height: 17vw;
-	display: flex;
-	justify-content: space-around;
-	background-color: $black;
-
-	.nav_button{
-		margin: 3vw;
+	#title_banner{
+		padding: 10%;
+		color:$white;
+		width:80%;
 		text-align: center;
-		width: 30%;
-		height: 10vw;
-		background-color: $grey;
-
-		&:hover{
-			color: $light_blue;
-			background-color: $black;
+		font-size: 15vw;
+		background-color: $light_blue;
+		height: 20vw;
+		margin:0;
+		@media (min-width: 1000px){
+			width:90%;
+			padding: 5%;
+			height: 5vw;
+			font-size: 10vw;
 		}
-		a{
-			display:block;
-			margin: 5%;
-			text-decoration: none;
-			font-size: 4vw;
-			color: $white;
+	}
+	nav{
+		width:100%;
+		height: 17vw;
+		display: flex;
+		justify-content: space-around;
+		background-color: $black;
+
+		.nav_button{
+			margin: 3vw;
+			text-align: center;
+			width: 30%;
+			height: 10vw;
+			background-color: $grey;
+
 			&:hover{
 				color: $light_blue;
+				background-color: $black;
 			}
+			a{
+				display:block;
+				margin: 5%;
+				text-decoration: none;
+				font-size: 4vw;
+				color: $white;
+				&:hover{
+					color: $light_blue;
+				}
+			}
+		}
+	}
+
+	.main_page{
+		width: 90%;
+		margin: 5%;
+		text-align: center;
+
+		h3{
+			font-size: 4vw;
+			width: 100%;
+			text-align: center;
 		}
 	}
 }
