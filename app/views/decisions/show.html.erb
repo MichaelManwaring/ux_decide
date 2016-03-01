@@ -1,30 +1,59 @@
-<%= content_tag :h1, @decision.name() %>
+<div class="profile">
+<%= content_tag :h3, @decision.name() %>
+<%= content_tag :h4, "A #{@decision.type.description} Decision" %>
+<p><%= @decision.description %></p>
+</div>
 
-
-<%= content_tag :h2, "We suggested:" %>
-<%= content_tag :h3, @decision.display_app_choice() %>
-
-<% if current_users_decision %>
-	<%= content_tag :h2, "You have chosen:" %>
-	<%= content_tag :h3, @decision.display_user_choice() %>
-	<%= link_to "Edit Choice", edit_decision_path(@decision) %>
-	<%= form_for @decision, url: decision_path(@decision), method: :put do |d| %>
+<div class="prompt_page">
+	<div class="result advice">
+		<%= content_tag :h2, "We suggested:" %>
+		<%= content_tag :h4, @decision.display_app_choice() %>
+		<br><br><br>
+	</div>
+	<% if current_users_decision %>
+		<div class="result response">
+			<%= content_tag :h2, "You have chosen:" %>
+			<%= content_tag :h4, @decision.display_user_choice() %>
+			<br><br><br>
+		</div>
+		<%= link_to "Edit Choice", edit_decision_path(@decision) %>
+		<% if @decision.description != "" %>
+			<%= form_for @decision, url: decision_path(@decision), method: :put do |d| %>
+				<% if @decision.voting_open %>
+					<%= d.submit("Turn Off Voting") %>
+				<% else %>
+					<%= d.submit("Turn On Voting") %>
+				<% end %>
+			<% end %>
+		<% end %>
+	<% else %>
 		<% if @decision.voting_open %>
-			<%= d.submit("Turn Off Voting") %>
-		<% else %>
-			<%= d.submit("Turn On Voting") %>
+			<h3>Help them out by voting!</h3>
+			<%= form_for @vote, url: votes_path(@decision), method: :post do |v| %>
+				<%= v.submit("#{@decision.firstoption.description}") %>
+				<br><br><br>
+				<%= v.submit("#{@decision.secondoption.description}") %>
+			<% end %>
+		<% else %>	
+			<h3>The User has closed the polls!</h3>
 		<% end %>
 	<% end %>
-	<%= link_to "Delete Decision", decision_path(@decision), method: :delete, data: {confirm: "Are you sure you want to delete this decision?"} %>
-<% else %>
-	<h3>Help them out by voting!</h3>
-	<%= form_for @vote, url: votes_path(@decision), method: :post do |v| %>
-		<%= v.submit("#{@decision.firstoption.description}") %>
-		<%= v.submit("#{@decision.secondoption.description}") %>
+	<% if @decision.description != "" %>
+		<div class="profile">
+			<div class="preference_title">
+				<%= content_tag :h2, "Total Votes: " + @decision.total_votes().to_s %>
+				<%= content_tag :h3, @decision.firstoption.description, :class => "left_option" %>
+				<h3 class="or">or</h3>
+				<%= content_tag :h3, @decision.secondoption.description, :class => "right_option" %>
+			</div>
+			<div class="preference_container">
+			<%= content_tag :div, "#{@decision.voting_percent(0)}%", :class => "pref_bar_#{@decision.voting_percent(0)} left_bar" %>
+			<%= content_tag :div, "#{@decision.voting_percent(1)}%", :class => "pref_bar_#{@decision.voting_percent(1)} right_bar" %>
+			</div>
+			<br>
+		</div>
 	<% end %>
-<% end %>
-
-<h3><%=@decision.firstoption.description%> votes:</h3>
-<%= @decision.firstoption.votes.count() %>
-<h3><%=@decision.secondoption.description%> votes:</h3>
-<%= @decision.secondoption.votes.count() %>
+</div>
+<div class="other_button">
+<%= link_to "Delete Decision", decision_path(@decision), method: :delete, data: {confirm: "Are you sure you want to delete this decision?"} %>
+</div>

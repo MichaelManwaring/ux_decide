@@ -1,24 +1,30 @@
-<%= content_tag :h1, "Your Custom Decisions:" %>
-<ol>	
-<% @user_decisions.each do |d| %>
-	<br>
-	<li><%=link_to d.name(), decision_path(d) %></li>
-<% end %>
-</ol>
-<table>
-	<tr>
-		<th>Decision name</th>
-		<th>Votes for first option</th>
-		<th>Votes for second option</th>
-	</tr>
-<%= content_tag :h1, "Other Peoples Decisions:" %>
-<% @other_decisions.each do |d| %>
-	<tr>
-	<td><%=link_to d.name(), decision_path(d) %></td> 
-	<td><%= d.firstoption.votes.count() %></td> 
-	<td><%= d.secondoption.votes.count() %></td> 
-	</tr>
-<% end %>
-</table>
+<div class="vote_board">
+	<%= content_tag :h1, "Your Custom Decisions:" %>
+	<div class="user_decisions">
+		<% @user_decisions.each do |d| %>
+		<div class="user_decision"><br><%=link_to d.name(), decision_path(d) %></div>
+		<% end %>
+	</div>
+</div>
+<div class="vote_board">
+	<%= content_tag :h1, "Decisions to vote on:" %>
+	<% @other_decisions.each do |d| %>
+	<table>
+		<tr>
+			<th>Votes for first option</th>
+			<th>Decision name</th>
+			<th>Votes for second option</th>
+		</tr>
+		
+		<tr>
+			<td class="other_a"><%= d.firstoption.votes.count() %></td> 
+			<td class="other_name"><%= link_to d.name(), decision_path(d) %></td> 
+			<td class="other_b"><%= d.secondoption.votes.count() %></td> 
+		</tr>
+		<% end %>
+	</table>
+	
+	<h3>choose.</h3>
+</div>
 
 

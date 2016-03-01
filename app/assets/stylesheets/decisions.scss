@@ -13,7 +13,7 @@ $grey: #444444;
 $white: #fdfeff;
 
 
-
+// styling new & edit decision page
 select{
 	// -webkit-appearance: none;
 	font-family: 'Montserrat', sans-serif;
@@ -82,4 +82,112 @@ article{
 	input{
 		width:3vw;
 	}
+}
+
+// styling decision index
+
+
+.vote_board{
+	background-color: $light_blue;
+	border: 2px solid $white;
+	border-radius: 2vw;
+	// padding: 0 -2vw 2vw -2vw;
+	width: 90%;
+	margin: 5%;
+	text-align: center;
+	h1{
+		font-size: 4vw;
+		margin: 0
+	}
+	.user_decisions{
+		width:100%;
+		// display:flex;
+
+		.user_decision{
+			width: 28%;
+			margin: 1%;
+			display: inline-block;
+			float: center;
+			height: 8.7vw;
+			background-color: $medium_blue;
+			border: 3px solid $white;
+			border-radius: 2vw;
+			&:hover{
+				// color: $black;
+				background-color: $light_blue;
+			}
+			a{
+				vertical-align: middle;
+				display:block;
+				margin: 2%;
+				text-decoration: none;
+				font-size: 2vw;
+				color: $white;
+				&:hover{
+				color: $grey;
+				}
+			}
+		}
+	}
+	table{
+		width: 80%;
+		margin: 0 10% 0 10%;
+		.other_name{
+			width:40%;
+			text-align: center;
+			background-color: $medium_blue;
+			border: 3px solid $white;
+			border-radius: 2vw;
+			&:hover{
+				// color: $black;
+				background-color: $light_blue;
+			}
+			a{
+				vertical-align: middle;
+				display:block;
+				margin: 2%;
+				text-decoration: none;
+				font-size: 2vw;
+				color: $white;
+				&:hover{
+				color: $grey;
+				}
+			}
+		}
+	}
+}
+// edit page
+.prompt_page{
+	width:90%;
+	margin:	5%;
+
+	.result{
+		width:45%;
+		border: 3px solid $white;
+		border-radius: 2vw;
+		display: inline-block;
+		margin: 1%;
+		h4{
+			font-size: 4vw;
+		}
+	}
+	.advice{
+		background-color: $dark_blue;
+		// float: left;
+	}
+	.response{
+		// float: right;
+		background-color: $light_blue;
+
+	}
+	.prompt{
+		input{
+			padding: 10%;
+			margin: 1%;
+			width: 94%;
+			font-size: 4vw;
+			height: 100%;
+		}
+	}
+
 }
