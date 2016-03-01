@@ -95,4 +95,3 @@ Rails.application.configure do
     domain: config.app_domain
   }
 end
-end
