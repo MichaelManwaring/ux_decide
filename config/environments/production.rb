@@ -79,7 +79,7 @@ Rails.application.configure do
 
 
   # Omniauth CHANGE IT CHANGE IT
-  config.app_domain = 'localhost'
+  config.app_domain = 'ch00se.heroku.com'
 
   # Email
   config.action_mailer.delivery_method = :smtp
