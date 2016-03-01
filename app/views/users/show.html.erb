@@ -1,29 +1,31 @@
-<% if @user == current_user %>
+<div class="profile">
+	<% if @user == current_user %>
 	<%= content_tag :h1, "Your Profile" %>
-<% else %>
+	<% else %>
 	<%= content_tag :h1, "Other Users Profile" %>
-<% end %>
+	<% end %>
+	<% @user.arbiter.preferences.each do |p| %>
 
-<% @user.arbiter.preferences.each do |p| %>
-<%= p.type.description %>
-<br>
-<%= p.type.possibility_name(0) %>
-<br>
-<%= p.explain_preference_a %>%
-<br>
-<%= p.type.possibility_name(1) %>
-<br>
-<%= p.explain_preference_b %>%
-<br>
-<% end %>
+	<div class="preference_title">
+		<%= content_tag :h3, p.type.possibility_name(0), :class => "left_option" %>
+		<h3 class="or">or</h3>
+		<%= content_tag :h3, p.type.possibility_name(1), :class => "right_option" %>
+	</div>
+	<div class="preference_container">
+		<%= content_tag :div, "#{p.explain_preference_a.to_s}%", :class => "pref_bar_#{p.explain_preference_a} left_bar" %>
+		<%= content_tag :div, "#{p.explain_preference_b.to_s}%", :class => "pref_bar_#{p.explain_preference_b} right_bar" %>
+	</div>
+	<% end %>
+	<h3>choose.</h3>
+</div>
 
-<br>
+
 
 
 
 
 <div class="other_button">
-<% if @user == current_user %>
+	<% if @user == current_user %>
 	<%= link_to "Sign Out", destroy_user_session_path(), confirm: 'Are you sure that you would like to sign out?', :method => :delete %>
-<% end %>
+	<% end %>
 </div>

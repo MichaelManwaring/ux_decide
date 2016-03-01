@@ -6,7 +6,7 @@ $grey: #444444;
 $white: #fdfeff;
 
 
-
+// styling for the layout
 body{
 	font-family: 'Montserrat', sans-serif;
 	// font-family: GeosansLight;
@@ -86,6 +86,8 @@ body{
 		}
 	}
 }
+
+// for those pesky 'other' buttons
 .other_button{
 	margin: 10%;
 	text-align: center;

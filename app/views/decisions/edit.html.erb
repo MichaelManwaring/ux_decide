@@ -1,9 +1,18 @@
-
-<%= content_tag :h2, "We think you should do:" %>
-<%= @decision.display_app_choice() %>
-<%= form_for @decision, url: decision_path(@decision), method: :put do |d| %>
-	<%= d.submit("I took your advice") %>
-	<%= d.submit("Actually, I'm going with the other one") %>
-<% end %>
-<%= content_tag :h2, "You have chosen:" %>
-<%= @decision.display_user_choice() %>
+<div class="prompt_page">
+	<div class="result advice">
+		<%= content_tag :h2, "We think you should do:" %>
+		<%= content_tag :h4, @decision.display_app_choice() %>
+		<br><br><br>
+	</div>
+	<div class="result response">
+		<%= content_tag :h2, "You have chosen:" %>
+		<%= content_tag :h4, @decision.display_user_choice() %>
+		<br><br><br>
+	</div>
+	<div class="prompt">
+		<%= form_for @decision, url: decision_path(@decision), method: :put do |d| %>
+		<%= d.submit("I took your advice") %>
+		<%= d.submit("I'm going with the other one") %>
+		<% end %>
+	</div>
+</div>

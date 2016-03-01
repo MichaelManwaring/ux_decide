@@ -29,7 +29,7 @@ class Decision < ActiveRecord::Base
 	def user_choice_assign(commit)
 		if commit == "I took your advice"
 			self.user_choice = self.app_choice
-		elsif commit == "Actually, I'm going with the other one"
+		elsif commit == "I'm going with the other one"
 			if self.app_choice == 0
 				self.user_choice = 1
 			elsif self.app_choice == 1
@@ -50,5 +50,22 @@ class Decision < ActiveRecord::Base
 	end
 	def find_preference
 		self.arbiter.preferences.where(type: self.type).last
+	end
+
+	def voting_percent(option)
+		if self.total_votes() == 0
+			return 50
+		end
+		if option == 0
+			100*self.firstoption.votes.count()/(self.firstoption.votes.count() + self.secondoption.votes.count())
+		elsif option ==1
+			100*self.secondoption.votes.count()/(self.firstoption.votes.count() + self.secondoption.votes.count())
+		else
+			return "BAD SELECT"
+		end
+		
+	end
+	def total_votes
+		self.firstoption.votes.count() + self.secondoption.votes.count()
 	end
 end

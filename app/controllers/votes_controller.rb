@@ -15,6 +15,12 @@ class VotesController < ApplicationController
     else
       flash[:notice] = "Bad Vote!"
     end
+    unless current_user.arbiter.preferences.where(type: @decision.type).last
+        puts "=========MAKING PREFERENCE=============="
+        @preference=Preference.create(a_score: 1, b_score: 1)
+        current_user.arbiter.preferences << @preference
+        @decision.type.preferences << @preference
+    end
     @vote.log_results_in_preference()
     redirect_to decision_path(@decision)
   end
