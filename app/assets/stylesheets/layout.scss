@@ -1,20 +1,15 @@
-$light_blue: #74b2d7;
-$medium_blue: #4788b0;
-$dark_blue: #1c638d;
-$black: #333333;
-$grey: #444444;
-$white: #fdfeff;
-
-
+@import 'colors';
 // styling for the layout
 body{
 	font-family: 'Montserrat', sans-serif;
-	// font-family: GeosansLight;
 	color: $white;
 	background-color: $grey;
 	@media (min-width: 1000px){
 		background-image: url(sky.jpg);
-	
+		background-size: cover;
+		background-position: center;
+		width: 70vw;
+		margin: 0 15vw 0 15vw;
 	}
 	#title_banner{
 		padding: 10%;
@@ -31,7 +26,7 @@ body{
 			width:90%;
 			padding: 5%;
 			height: 5vw;
-			font-size: 10vw;
+			font-size: 7vw;
 		}
 	}
 	nav{

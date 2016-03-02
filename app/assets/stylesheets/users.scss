@@ -1,15 +1,4 @@
-// Place all the styles related to the users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
-
-$light_blue: #74b2d7;
-$medium_blue: #4788b0;
-$dark_blue: #1c638d;
-$black: #333333;
-$grey: #444444;
-$white: #fdfeff;
-
+@import 'colors';
 
 .profile{
 	background-color: $light_blue;

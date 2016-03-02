@@ -1,36 +1,22 @@
-// Place all the styles related to the decisions controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
-
-
-
-$light_blue: #74b2d7;
-$medium_blue: #4788b0;
-$dark_blue: #1c638d;
-$black: #333333;
-$grey: #444444;
-$white: #fdfeff;
+@import 'colors';
+@import 'font';
 
 
 // styling new & edit decision page
 select{
-	// -webkit-appearance: none;
-	font-family: 'Montserrat', sans-serif;
+	@extend .standardfont;
 	text-align-last: center;
 	font-size: 7vw;
 	width: 80%;
 	border-radius: 2vw;
 	background-color: $light_blue;
-	color: $white;
 
 }
 textarea{
-	font-family: 'Montserrat', sans-serif;
-	color: $white;
+	@extend .standardfont;
 	width: 80%;
 	height: 120px;
-	border: 3px solid #cccccc;
+	border: 3px solid $white;
 	padding: 5px;
 	font-size: 1.4vw;
 	text-align: center;
@@ -41,23 +27,21 @@ textarea{
 	// background-repeat: no-repeat;
 }
 input{
-	font-family: 'Montserrat', sans-serif;
+	@extend .standardfont;
 	text-align: center;
 	font-size: 6.5vw;
 	width:80%;
 	border-radius: 2vw;
 	background-color: $medium_blue;
-	color: $white;
 
 
 }
 button{
-	font-family: 'Montserrat', sans-serif;
+	@extend .standardfont;
 	background-color: $dark_blue;
 	font-size: 6.5vw;
 	width: 80%;
 	border-radius: 2vw;
-	color: $white;
 
 }
 article{
