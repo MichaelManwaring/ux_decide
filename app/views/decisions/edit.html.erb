@@ -11,7 +11,10 @@
 	</div>
 	<div class="prompt">
 		<%= form_for @decision, url: decision_path(@decision), method: :put do |d| %>
+		<br><br><br>
 		<%= d.submit("I took your advice") %>
+		<br><br><br>
+		<br><br><br>
 		<%= d.submit("I'm going with the other one") %>
 		<% end %>
 	</div>

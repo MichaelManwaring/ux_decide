@@ -2,7 +2,10 @@
 	<%= content_tag :h1, "Your Custom Decisions:" %>
 	<div class="user_decisions">
 		<% @user_decisions.each do |d| %>
-		<div class="user_decision"><br><%=link_to d.name(), decision_path(d) %></div>
+			<div class="user_decision"><br><%=link_to d.name(), decision_path(d) %></div>
+		<% end %>
+		<% if @user_decisions.count() == 0 %>
+			<h3>You have no custom decisions yet! Go make some!</h3>
 		<% end %>
 	</div>
 </div>

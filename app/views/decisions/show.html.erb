@@ -8,13 +8,11 @@
 	<div class="result advice">
 		<%= content_tag :h2, "We suggested:" %>
 		<%= content_tag :h4, @decision.display_app_choice() %>
-		<br><br><br>
 	</div>
 	<% if current_users_decision %>
 		<div class="result response">
 			<%= content_tag :h2, "You have chosen:" %>
 			<%= content_tag :h4, @decision.display_user_choice() %>
-			<br><br><br>
 		</div>
 		<div class="other_button">
 		<%= link_to "Edit Choice", edit_decision_path(@decision) %>
@@ -36,7 +34,7 @@
 				<br><br><br>
 				<%= v.submit("#{@decision.secondoption.description}") %>
 			<% end %>
-		<% else %>	
+		<% elsif current_user != @decision.arbiter.user %>	
 			<h3>The User has closed the polls!</h3>
 		<% end %>
 	<% end %>
@@ -56,6 +54,8 @@
 		</div>
 	<% end %>
 </div>
-<div class="other_button">
-<%= link_to "Delete Decision", decision_path(@decision), method: :delete, data: {confirm: "Are you sure you want to delete this decision?"} %>
-</div>
+<% if user_signed_in? && current_users_decision %>
+	<div class="other_button">
+	<%= link_to "Delete Decision", decision_path(@decision), method: :delete, data: {confirm: "Are you sure you want to delete this decision?"} %>
+	</div>
+<% end %>

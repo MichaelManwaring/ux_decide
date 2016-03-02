@@ -3,12 +3,12 @@
 
 
 <%= form_for @decision do |d| %>
-	<%= content_tag :h3, "What kind of decision is this?" %>
+	<%= content_tag :h3, "Pick a Decision Type:" %>
 	<%= d.select(:type_id, Type.all.collect {|t| [ t.description, t.id ] }) %>
 	<!-- make a hiding method for custom -->
 	<div id="custom_dec_hider">
-		<%= content_tag :h3, "What is the background for this decision?" %>
-		<%= d.text_area :description, :id => "description", :placeholder => "Entering a description here will make this a public decision that other users can vote on." %>
+		<%= content_tag :h3, "Describe the decision you are facing:" %>
+		<%= d.text_area :description, :id => "description", :placeholder => "Enter a description here and enable other users to vote on this decision" %>
 		<div class="option_input" id="first_option_input">
 			<%= d.fields_for @firstoption do |a| %>
 			<%= content_tag :h3, "The first option is:", :id => "first_option_description" %>
@@ -22,9 +22,8 @@
 			<% end %>
 		</div>
 	</div>
-	<br>
-	<br>
-	<%= d.submit "choose. for me" %>
+	<%= content_tag :h3, "Then hit:" %>
+	<%= d.submit "choose." %>
 	<% end %>
 <% if user_signed_in? %>
 	<br>
