@@ -34,8 +34,8 @@
 				<br><br><br>
 				<%= v.submit("#{@decision.secondoption.description}") %>
 			<% end %>
-		<% elsif current_user != @decision.arbiter.user %>	
-			<h3>The User has closed the polls!</h3>
+		<% else %>	
+			<h3>This decision is not open for voting</h3>
 		<% end %>
 	<% end %>
 	<% if @decision.description != "" %>
