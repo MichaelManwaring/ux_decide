@@ -10,6 +10,9 @@ select{
 	width: 80%;
 	border-radius: 2vw;
 	background-color: $light_blue;
+	@media (min-width: 1000px){
+		font-size: 4vw;
+	}
 
 }
 textarea{
@@ -42,7 +45,7 @@ button{
 	font-size: 6.5vw;
 	width: 80%;
 	border-radius: 2vw;
-
+	
 }
 article{
 	border: 3px solid $medium_blue;
