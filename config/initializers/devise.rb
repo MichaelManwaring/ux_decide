@@ -263,7 +263,7 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
   require 'omniauth-facebook'
-  config.omniauth :facebook, FACEBOOK_KEY, FACEBOOK_SECRET
+  config.omniauth :facebook, FACEBOOK_KEY, FACEBOOK_SECRET, token_params: { parse: :json } #
   # config.omniauth :twitter, "KEY", "SECRET"
   # config.omniauth :google, "KEY", "SECRET"
 
