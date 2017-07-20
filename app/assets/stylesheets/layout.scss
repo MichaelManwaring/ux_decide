@@ -5,11 +5,7 @@ body{
 	color: $white;
 	background-color: $grey;
 	@media (min-width: 1000px){
-		background-image: url(sky.jpg);
-		background-size: cover;
-		background-position: center;
-		width: 70vw;
-		margin: 0 15vw 0 15vw;
+		width: 99vw;
 	}
 	#title_banner{
 		padding: 10%;

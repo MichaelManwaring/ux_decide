@@ -54,10 +54,14 @@ article{
 	p{
 		border: 3px solid $light_blue;
 		margin: 1vw;
+		padding: 2vw;
 		border-radius: 2vw;
 		strong{
-			color: $medium_blue;
+			color: $light_blue;
 			font-size: 3vw;
+			@media (min-width: 1000px){
+				font-size:2vw;
+			}
 		}
 	}
 }
