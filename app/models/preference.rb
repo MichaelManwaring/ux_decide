@@ -11,10 +11,18 @@ class Preference < ActiveRecord::Base
 		self.save!
 	end
 	def explain_preference_a
-		@percentage = 100*(self.a_score-1) / (self.a_score + self.b_score-2)
+		if self.a_score = self.b_score = 1
+			@percentage = 50
+		else
+			@percentage = 100*(self.a_score-1) / (self.a_score + self.b_score-2)
+		end
 	end
 	def explain_preference_b
-		@percentage = 100*(self.b_score-1) / (self.a_score + self.b_score-2)
+		if self.a_score = self.b_score = 1
+			@percentage = 50
+		else
+			@percentage = 100*(self.b_score-1) / (self.a_score + self.b_score-2)
+		end
 	end
 	def make_choice
 		@coinflip=rand(self.a_score + self.b_score + 1)
